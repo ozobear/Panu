@@ -53,7 +53,7 @@ class ProfileView(View):
 		if userform.is_valid() and profileform.is_valid():
 			userform.save()
 			profileform.save()
-			return redirect('profile')
+			return redirect('accounts:profile')
 		else:
 			context={
 			'userform':userform,

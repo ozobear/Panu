@@ -5,6 +5,22 @@
 	<title>Login</title>
 </head>
 <body>
-	
+	{%if form.erros%}
+		<p>Usuario y contraseña incorrectos</p>
+	{% else %}
+	    <p>Introducde tu usuario y contraseña</p>
+	{%endif%}
+
+	<form action="{% url 'accounts:login' %}" method="post">
+		{%csrf_token%}
+		{{form.as_p}}
+		<input type="hidden" name="next" value="{{next}}">
+		<input type="submit" name="" value="Iniciar Sesión">
+	</form>
+	<h5>¿Quieres iniciar Sesión con Facebook?</h5>
+	<a href="{%url 'social:begin' 'facebook'%}">Facebook</a>
+
+	<p>¿Aún no tienes cuenta? puedes crear una <a href="{% url 'accounts:registro' %}">aquí</a></p>
+
 </body>
 </html>
