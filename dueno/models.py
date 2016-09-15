@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Persona(models.Model):
 	nombre = models.CharField(max_length=150)

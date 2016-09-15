@@ -19,12 +19,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'registro',
     'dueno',
 ]
@@ -45,7 +47,7 @@ ROOT_URLCONF = 'Panu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,3 +111,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
+
+# from django.core.urlresolvers import reverse_lazy
+
+# LOGIN_REDIRECT_URL = reverse_lazy('posts:lista')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social.backends.facebook.Facebook2OAuth2',
+    # 'social.backends.twitter.TwitterOAuth',
+    # 'social.backends.google.GoogleOAuth2',
+    )
+
+SOCIAL_AUTH_FACEBOOK_KEY = '620109301499847'
+SOCIAL_AUTH_FACEBOOK_SECRET = '6006a2551099d647f3f9117a5c5b9a7b'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
